@@ -1,2 +1,2 @@
 ignore:
-  - "src/main/java/insureBook/address/ui/*"
+  - "src/main/java/insurebook/address/ui/*"

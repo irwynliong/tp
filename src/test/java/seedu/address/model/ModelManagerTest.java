@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalClients.XAVIER;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -89,8 +90,19 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void hasClient_nullGuest_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasClient(null));
+    }
+
+    @Test
+    public void hasClient_clientNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasClient(XAVIER));
+    }
+
+    @Test
+    public void hasClient_clientInAddressBook_returnsTrue() {
+        modelManager.addClient(XAVIER);
+        assertTrue(modelManager.hasClient(XAVIER));
     }
 
     @Test

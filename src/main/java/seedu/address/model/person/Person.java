@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -20,10 +19,10 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Optional<Email> email;
+    private final Email email;
 
     // Data fields
-    private final Optional<Address> address;
+    private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -33,8 +32,8 @@ public class Person {
         requireAllNonNull(name, tags);
         this.name = name;
         this.phone = phone;
-        this.email = Optional.ofNullable(email);
-        this.address = Optional.ofNullable(address);
+        this.email = email;
+        this.address = address;
         this.tags.addAll(tags);
     }
 
@@ -46,11 +45,11 @@ public class Person {
         return phone;
     }
 
-    public Optional<Email> getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public Optional<Address> getAddress() {
+    public Address getAddress() {
         return address;
     }
 

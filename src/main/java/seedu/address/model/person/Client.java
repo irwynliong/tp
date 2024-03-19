@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -14,17 +13,17 @@ import seedu.address.model.tag.Tag;
 public class Client extends Person {
 
     // Additional data fields
-    private final Optional<Meeting> meeting;
+    private final Meeting meeting;
 
     /**
      * Name must be present and not null.
      */
     public Client(Name name, Phone phone, Email email, Address address, Meeting meeting, Set<Tag> tags) {
         super(name, phone, email, address, tags);
-        this.meeting = Optional.ofNullable(meeting);
+        this.meeting = meeting;
     }
 
-    public Optional<Meeting> getMeeting() {
+    public Meeting getMeeting() {
         return meeting;
     }
 

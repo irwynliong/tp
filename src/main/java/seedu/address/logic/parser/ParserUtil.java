@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -11,6 +12,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -96,6 +98,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String meeting} into an {@code Meeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meeting} is invalid.
+     */
+    public static Meeting parseMeeting(String meeting) throws ParseException {
+        String trimmedMeeting = meeting.trim();
+        if (!Meeting.isValidMeeting(trimmedMeeting)) {
+            throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
+        }
+        return new Meeting(trimmedMeeting);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +136,25 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Represents a function that parses the given {@code String} into the given result.
+     */
+    public interface ParserFunction<R> {
+        R parse(String value) throws ParseException;
+    }
+
+    /**
+     * Returns the result of parsing {@code optionalString} with the given
+     * parser function if {@code optionalString} is present, else returns null.
+     */
+    public static <R> R parseOptionally(Optional<String> optionalString, ParserFunction<R> parserFunction)
+            throws ParseException {
+
+        if (optionalString.isPresent()) {
+            return parserFunction.parse(optionalString.get());
+        }
+        return null;
     }
 }

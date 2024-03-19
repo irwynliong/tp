@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -25,12 +26,15 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_MEETING = "12-02-2024";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_MEETING_1 = "2024-02-12";
+    private static final String VALID_MEETING_2 = "2024-03-12 18:00:00";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -148,6 +152,32 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
+    @Test
+    public void parseMeeting_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMeeting(null));
+    }
+
+    @Test
+    public void parseMeeting_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMeeting(INVALID_MEETING));
+    }
+
+    @Test
+    public void parseMeeting_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+        String meetingWithWhitespace1 = WHITESPACE + VALID_MEETING_1 + WHITESPACE;
+        String meetingWithWhitespace2 = WHITESPACE + VALID_MEETING_2 + WHITESPACE;
+        Meeting expectedMeeting1 = new Meeting(VALID_MEETING_1);
+        Meeting expectedMeeting2 = new Meeting(VALID_MEETING_2);
+        assertEquals(expectedMeeting1, ParserUtil.parseMeeting(meetingWithWhitespace1));
+        assertEquals(expectedMeeting2, ParserUtil.parseMeeting(meetingWithWhitespace2));
+    }
+    @Test
+    public void parseMeeting_validValueWithoutWhitespace_returnsTrimmedEmail() throws Exception {
+        Meeting expectedMeeting1 = new Meeting(VALID_MEETING_1);
+        Meeting expectedMeeting2 = new Meeting(VALID_MEETING_2);
+        assertEquals(expectedMeeting1, ParserUtil.parseMeeting(VALID_MEETING_1));
+        assertEquals(expectedMeeting2, ParserUtil.parseMeeting(VALID_MEETING_2));
+    }
     @Test
     public void parseTag_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));

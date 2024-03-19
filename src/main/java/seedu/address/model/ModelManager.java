@@ -155,19 +155,19 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //    /**
-    //     * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
-    //     * {@code versionedAddressBook}
-    //     */
-    //    @Override
-    //    public ObservableList<Client> getFilteredClientList() {
-    //        return filteredClient;
-    //    }
-    //    @Override
-    //    public void updateFilteredClientList(Predicate<Client> predicate) {
-    //        requireNonNull(predicate);
-    //        filteredClient.setPredicate(predicate);
-    //    }
+    /**
+     * Returns an unmodifiable view of the list of {@code Client} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Client> getFilteredClientList() {
+        return filteredClient;
+    }
+    @Override
+    public void updateFilteredClientList(Predicate<Client> predicate) {
+        requireNonNull(predicate);
+        filteredClient.setPredicate(predicate);
+    }
 
     @Override
     public boolean equals(Object other) {

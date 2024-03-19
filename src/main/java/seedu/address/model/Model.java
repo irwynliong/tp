@@ -110,12 +110,12 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
-    //    /** Returns an unmodifiable view of the filtered client list */
-    //    ObservableList<Client> getFilteredClientList();
-    //
-    //    /**
-    //     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
-    //     * @throws NullPointerException if {@code predicate} is null.
-    //     */
-    //    void updateFilteredClientList(Predicate<Client> predicate);
+    /** Returns an unmodifiable view of the filtered client list */
+    ObservableList<Client> getFilteredClientList();
+
+    /**
+     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredClientList(Predicate<Client> predicate);
 }

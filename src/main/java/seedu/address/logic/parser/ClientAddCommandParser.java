@@ -44,9 +44,15 @@ public class ClientAddCommandParser implements Parser<ClientAddCommand> {
                 PREFIX_ADDRESS);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseOptionally(argMultimap.getValue(PREFIX_EMAIL), ParserUtil::parseEmail);
-        Address address = ParserUtil.parseOptionally(argMultimap.getValue(PREFIX_ADDRESS), ParserUtil::parseAddress);
-        Meeting meeting = ParserUtil.parseOptionally(argMultimap.getValue(PREFIX_MEETING), ParserUtil::parseMeeting);
+        Email email = argMultimap.getValue(PREFIX_EMAIL).isEmpty()
+                ? null
+                : ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Address address = argMultimap.getValue(PREFIX_ADDRESS).isEmpty()
+                ? null
+                : ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Meeting meeting = argMultimap.getValue(PREFIX_MEETING).isEmpty()
+                ? null
+                : ParserUtil.parseMeeting(argMultimap.getValue(PREFIX_MEETING).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Client client = new Client(name, phone, email, address,

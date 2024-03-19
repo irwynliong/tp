@@ -19,7 +19,7 @@ import seedu.address.model.person.Client;
  */
 public class ClientAddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "client";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Client to InsureBook. "
             + "Compulsory Parameters: "

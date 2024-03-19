@@ -179,10 +179,16 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        //        @Override
-        //        public void updateFilteredClientList(Predicate<? super Client> predicate) {
-        //            throw new AssertionError("This method should not be called.");
-        //        }
+        @Override
+        public void updateFilteredClientList(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Client> getFilteredClientList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**

@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -53,6 +54,7 @@ public class PersonBuilder {
         meeting = personToCopy.getMeeting();
         tags = new HashSet<>(personToCopy.getTags());
     }
+
 
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.

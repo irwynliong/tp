@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -40,6 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setMeeting(person.getMeeting());
         descriptor.setTags(person.getTags());
     }
+
 
     /**
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.

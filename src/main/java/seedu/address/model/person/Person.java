@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -12,14 +13,14 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: field values are validated, immutable.
  */
 public class Person {
 
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    private final Optional<Email> email;
 
     // Data fields
     private final Address address;
@@ -27,7 +28,7 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Name and tags must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Meeting meeting, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, meeting, tags);
@@ -47,11 +48,11 @@ public class Person {
         return phone;
     }
 
-    public Email getEmail() {
+    public Optional<Email> getEmail() {
         return email;
     }
 
-    public Address getAddress() {
+    public Optional<Address> getAddress() {
         return address;
     }
 

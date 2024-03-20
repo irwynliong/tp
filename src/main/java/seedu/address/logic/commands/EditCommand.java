@@ -108,7 +108,6 @@ public class EditCommand extends Command {
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMeeting, updatedTags);
     }
 
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

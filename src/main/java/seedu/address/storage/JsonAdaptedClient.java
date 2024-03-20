@@ -42,7 +42,11 @@ public class JsonAdaptedClient extends JsonAdaptedPerson {
      */
     public JsonAdaptedClient(Client source) {
         super(source);
-        meeting = source.getMeeting().toString();
+        if (source.getMeeting() != null) {
+            meeting = source.getMeeting().toString();
+        } else {
+            meeting = "";
+        }
     }
 
     /**

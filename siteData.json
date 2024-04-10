@@ -54,7 +54,6 @@
         "add-policy-feature": "Add Policy feature",
         "add-client-feature": "Add Client feature",
         "delete-client-feature": "Delete Client feature",
-        "add-policy-feature-2": "Add policy feature",
         "delete-policy-feature": "Delete Policy feature",
         "view-client-feature": "View Client feature",
         "view-meetings-feature": "View Meetings feature",
@@ -110,11 +109,12 @@
     },
     {
       "src": "UserGuide.md",
+      "title": "User Guide",
       "headings": {
         "insurebook-user-guide": "InsureBook User Guide",
         "quick-start": "Quick start",
         "features": "Features",
-        "viewing-help-help": "Viewing help : help",
+        "finding-help-help": "Finding help : help",
         "adding-a-client-add": "Adding a client : add",
         "listing-all-clients-list": "Listing all clients : list",
         "editing-a-client-edit": "Editing a client : edit",

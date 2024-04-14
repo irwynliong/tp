@@ -163,9 +163,7 @@ multiple lines as space characters surrounding line-breaks may be omitted when c
 
 Opens a pop-up window with the link to InsureBook's User Guide and Command Summary for your reference.
 The linked can be copied with using the 'Enter' key, and can be closed using the 'Esc' key.
-
-   <img src="images/helpCommand.png" alt="Help Window"/>
-
+	![Help](images/helpCommand.png) <br><br>
 Format: `help`
 
 
@@ -176,9 +174,7 @@ Format: `help`
 
 Adds a client, together with their name, phone number, email, address and meeting date and time into InsureBook. <br>
 You may also add optional tags to the client, to provide any extra details as labels.
-
-   <img src="images/addCommand.png" alt="Add a client to InsureBook"/>
-
+	![Add](images/addCommand.png) <br><br>
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEETING_DATE MEETING_TIME [t/TAG]...`
 
 <br/>
@@ -229,11 +225,8 @@ Examples:
 ### Listing all clients : `list`
 
 
-
 Shows a list of all clients in InsureBook.
-
-   <img src="images/listCommand.png" alt="List all clients in InsureBook"/>
-
+	![List](images/listCommand.png) <br><br>
 Format: `list`
 
 
@@ -243,9 +236,7 @@ Format: `list`
 
 
 Edits an existing client in InsureBook.
-
-   <img src="images/editCommand.png" alt="Edit a client's details in InsureBook"/>
-
+	![Edit](images/editCommand.png) <br><br>
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [m/MEETING_DATE MEETING_TIME] [t/TAG]...`
 
 
@@ -306,11 +297,8 @@ with the `friends` tag.
 
 
 Finds clients whose names contain any of the input keywords.
-
-   <img src="images/findCommand.png" alt="Find client John in InsureBook"/>
-
+	![Find](images/findCommand.png) <br><br>
 Format: `find KEYWORD [MORE_KEYWORDS]`
-
 
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
@@ -334,9 +322,7 @@ Examples:
 ### Deleting a client : `delete`
 
 Removes an existing client based on their index from InsureBook.
-
-   <img src="images/deleteCommand.png" alt="Delete the first client in InsureBook"/>
-
+	![Delete](images/deleteCommand.png) <br><br>
 Format: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
@@ -362,9 +348,8 @@ Examples:
 
 Expands a client's profile such that the user can see all policies and policy details.
 
-The policies panel will expand upon calling the `view` function: <br>
-<img src="images/View-Command.png" alt="MeetingsWindow" width="522" height="239"/>
-
+The policies panel will expand upon calling the `view` function:
+	![View](images/View-Command.png) <br><br>
 Format: `view INDEX`
 
 * Views the client's policies at the specified `INDEX`.
@@ -389,9 +374,7 @@ the results of the find command.
 ### Adding a new policy to a client : `addPolicy`
 
 Adds a new insurance policy to a specific client.
-
-   <img src="images/addPolicyCommand.png" alt="Add a policy to the first client in InsureBook"/>
-
+	![Add-Policy](images/addPolicyCommand.png) <br><br>
 Format: `addPolicy INDEX pol/POLICY_NAME type/POLICY_TYPE polnum/POLICY_NUMBER
 pterm/PREMIUM_TERM prem/POLICY_PREMIUM b/BENEFIT`
 
@@ -472,9 +455,7 @@ Examples:
 ### Deleting an existing policy from a client : `delPolicy`
 
 Deletes an existing insurance policy of a specific client.
-
-<img src="images/delPolicyCommand.png" alt="Deletes a policy from the first client in InsureBook"/>
-
+	![Delete-Policy](images/delPolicyCommand.png) <br><br>
 Format: `delPolicy INDEX polnum/POLICY_NUMBER`
 
 * Deletes a policy to the person at the specified `INDEX`.
@@ -504,9 +485,7 @@ Examples:
 ### Locating clients via Policy Name : `findPolicy`
 
 Finds the specified policy for all clients
-
-<img src="images/findPolicy.png" alt="Finds all clients in InsureBook with Saver policies"/>
-
+	![Find-Policy](images/findPolicy.png) <br><br>
 Format: `findPolicy POLICY_NAME`
 
 * Finds clients with the specified `POLICY_NAME`.
@@ -558,9 +537,7 @@ Format: `meetings`
 ### Clearing all client entries : `clear`
 
 Clears all client entries from InsureBook.
-
-<img src="images/clearCommand.png" alt="Clears all client entries in InsureBook"/>
-
+	![Clear](images/clearCommand.png) <br><br>
 Format:`clear`
 
 ### Exiting InsureBook : `exit`

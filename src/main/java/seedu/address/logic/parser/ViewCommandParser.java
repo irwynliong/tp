@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ViewCommand;
@@ -20,15 +20,16 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      */
     public ViewCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        // Parse the index from the input arguments
-        Index index = ParserUtil.parseIndex(args);
-        if (index.getOneBased() <= 0) {
+        try {
+            // Parse the index from the input arguments
+            Index index = ParserUtil.parseIndex(args);
+            // Create and return a new ViewCommand with the parsed index
+            return new ViewCommand(index);
+        } catch (ParseException pe) {
+            // If parsing fails, throw a new ParseException with an error message
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX)
-            );
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
         }
-        // Create and return a new ViewCommand with the parsed index
-        return new ViewCommand(index);
     }
 }
 

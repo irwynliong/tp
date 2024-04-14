@@ -64,6 +64,11 @@ InsureBook is a **desktop app for insurance agents to manage potential and exist
    Labelling each component of the UI:
    ![Ui-labelled](images/Ui-labelled.png) <br><br>
 
+	<div style="border: 1px solid #007bff; background-color: #cce5ff; padding: 10px; border-radius: 5px;">
+	<span style="font-size: 20px; color: #007bff;">📝</span> <strong>Note:</strong>
+	The Meetings panel displays meetings in the same order as the Clients panel in <code>list</code> view, and is NOT sorted chronologically.
+	</div> <br>
+
 6. Type your command into the user input box and press Enter to execute it. e.g. type **`help`** and press Enter to open the help window.<br>
 Some example commands you can try:
 
@@ -112,7 +117,9 @@ For the best experience, use InsureBook in full-screen!
 
 **Notes about the command format:**<br>
 
+* Commands are case-sensitive.
 
+e.g. `add` is a valid command but `Add` will not be a valid command.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
 
@@ -150,13 +157,14 @@ multiple lines as space characters surrounding line-breaks may be omitted when c
 
 </box>
 
-
+## Commands
 
 ### Finding help : `help`
 
 Opens a pop-up window with the link to InsureBook's User Guide and Command Summary for your reference.
 The linked can be copied with using the 'Enter' key, and can be closed using the 'Esc' key.
 
+   <img src="images/helpCommand.png" alt="Help Window"/>
 
 Format: `help`
 
@@ -169,6 +177,7 @@ Format: `help`
 Adds a client, together with their name, phone number, email, address and meeting date and time into InsureBook. <br>
 You may also add optional tags to the client, to provide any extra details as labels.
 
+   <img src="images/addCommand.png" alt="Add a client to InsureBook"/>
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEETING_DATE MEETING_TIME [t/TAG]...`
 
@@ -176,14 +185,26 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MEETING_DATE MEETING_TIME
 
 <div style="border: 1px solid #007bff; background-color: #cce5ff; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">📝</span> <strong>Note:</strong>
-Meeting field input <strong>MUST</strong> be a date and time in the future!
+
+PHONE_NUMBER does not need to be unique.
+
+EMAIL does not need to be unique.
+
+ADDRESS does not need to be unique.
 </div>
 
 <br/>
 
 <div style="border: 1px solid #dc3545; background-color: #f8d7da; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x2757;</span> <strong>Caution:</strong>
-Meeting time needs to be unique!
+
+Meeting field input <strong>MUST</strong> be a date and time in the future!
+
+MEETING_TIME <strong>MUST</strong> be unique!
+
+Name <strong>MUST</strong> be alphanumeric characters only!
+
+PHONE_NUMBER <strong>MUST</strong> be numeric characters only! <strong> Min: 3 characters</strong>
 </div>
 
 <br/>
@@ -211,7 +232,7 @@ Examples:
 
 Shows a list of all clients in InsureBook.
 
-
+   <img src="images/listCommand.png" alt="List all clients in InsureBook"/>
 
 Format: `list`
 
@@ -223,7 +244,7 @@ Format: `list`
 
 Edits an existing client in InsureBook.
 
-
+   <img src="images/editCommand.png" alt="Edit a client's details in InsureBook"/>
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [m/MEETING_DATE MEETING_TIME] [t/TAG]...`
 
@@ -240,16 +261,30 @@ The index must be a positive integer 1, 2, 3, …​
 
 * You can remove all the client’s tags by typing t/ without specifying any tags after it.
 
+<br/>
+
 <div style="border: 1px solid #007bff; background-color: #cce5ff; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">📝</span> <strong>Note:</strong>
-Meeting field input <strong>MUST</strong> be a date and time in the future!
+
+PHONE_NUMBER does not need to be unique.
+
+EMAIL does not need to be unique.
+
+ADDRESS does not need to be unique.
 </div>
 
 <br/>
 
 <div style="border: 1px solid #dc3545; background-color: #f8d7da; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x2757;</span> <strong>Caution:</strong>
-Meeting time needs to be unique!
+
+Meeting field input <strong>MUST</strong> be a date and time in the future!
+
+MEETING_TIME <strong>MUST</strong> be unique!
+
+Name <strong>MUST</strong> be alphanumeric characters only!
+
+PHONE_NUMBER <strong>MUST</strong> be numeric characters only! <strong> Min: 3 characters</strong>
 </div>
 
 <br/>
@@ -272,7 +307,7 @@ with the `friends` tag.
 
 Finds clients whose names contain any of the input keywords.
 
-
+   <img src="images/findCommand.png" alt="Find client John in InsureBook"/>
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -300,6 +335,8 @@ Examples:
 
 Removes an existing client based on their index from InsureBook.
 
+   <img src="images/deleteCommand.png" alt="Delete the first client in InsureBook"/>
+
 Format: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
@@ -325,7 +362,7 @@ Examples:
 
 Expands a client's profile such that the user can see all policies and policy details.
 
-The policies panel will expand upon calling the `view` function:
+The policies panel will expand upon calling the `view` function: <br>
 <img src="images/View-Command.png" alt="MeetingsWindow" width="522" height="239"/>
 
 Format: `view INDEX`
@@ -352,6 +389,8 @@ the results of the find command.
 ### Adding a new policy to a client : `addPolicy`
 
 Adds a new insurance policy to a specific client.
+
+   <img src="images/addPolicyCommand.png" alt="Add a policy to the first client in InsureBook"/>
 
 Format: `addPolicy INDEX pol/POLICY_NAME type/POLICY_TYPE polnum/POLICY_NUMBER
 pterm/PREMIUM_TERM prem/POLICY_PREMIUM b/BENEFIT`
@@ -434,6 +473,8 @@ Examples:
 
 Deletes an existing insurance policy of a specific client.
 
+<img src="images/delPolicyCommand.png" alt="Deletes a policy from the first client in InsureBook"/>
+
 Format: `delPolicy INDEX polnum/POLICY_NUMBER`
 
 * Deletes a policy to the person at the specified `INDEX`.
@@ -463,6 +504,8 @@ Examples:
 ### Locating clients via Policy Name : `findPolicy`
 
 Finds the specified policy for all clients
+
+<img src="images/findPolicy.png" alt="Finds all clients in InsureBook with Saver policies"/>
 
 Format: `findPolicy POLICY_NAME`
 
@@ -516,6 +559,8 @@ Format: `meetings`
 
 Clears all client entries from InsureBook.
 
+<img src="images/clearCommand.png" alt="Clears all client entries in InsureBook"/>
+
 Format:`clear`
 
 ### Exiting InsureBook : `exit`
@@ -544,9 +589,14 @@ AddressBook data are saved in the hard disk automatically after any command that
 **Q**: What if I have two clients with the same name?<br>
 **A**: You are not allowed to add clients with duplicate names into InsureBook. If you have more than 1 client with the same name, consider adding a unique identifier to their names, e.g. 'John Doe from NUS' and 'John Doe from SMU'.
 
+**Q**: My client's name contains special characters, but the Name field must be alphanumeric only. How do I workaround this?
+**A**: For now, you may use a space character for such scenarios, e.g. `"s o"` instead of `"s/o"`. We will allow some special characters in future versions of InsureBook.
+
 **Q**: Can I leave the meeting field empty for clients that I have not scheduled a meeting with?<br>
 **A**: No - the meeting field is mandatory. You WILL need to schedule appointments with your clients before adding them to the address book. We believe that requiring you to be proactive in scheduling appointments will help you reach greater heights in your career!
 
+**Q**: How can I edit my client's current policy details? I typed some fields wrongly.
+**A**: You may delete the policy with `delPolicy` and add the correct version with `addPolicy`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -559,6 +609,9 @@ AddressBook data are saved in the hard disk automatically after any command that
 1.  **When using multiple screens**, if you move the application to a secondary screen, and later switch to using
 only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created
 by the application before running the application again.
+2. Phone number field is allowed to be a nonsensical number, e.g. "123". Please **ensure you type in your client's phone number carefully** to avoid recording down an incorrect number. Future versions will check the phone number field to make your workflow less error-prone.
+3. Phone number and email are all not unique, i.e. two clients can have the same phone number. Address is non-unique too, but this is intended as you may have clients living together. <br>
+   Again, please **ensure you type in your client's details carefully** to prevent the situation of clients having duplicate phone numbers or email addresses.
 
 
 

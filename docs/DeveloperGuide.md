@@ -166,7 +166,7 @@ As an insurance agent, each of your clients can have 0 or multiple policies unde
 cover a variety of things such as health, life, car, house, etc. Hence, it is essential that our application keeps
 track of these policies and their details under the correct client.
 
-#### Proposed Implementation
+#### Implementation
 
 Essential policy information consists of 6 fields:
 
@@ -284,8 +284,13 @@ The `index` field needs to be in an integer.
 #### Design considerations:
 
 - User can delete a client at the specified index.
+- User **should not** have to remember the client's original index in the `list` view, thus: 
 
-- `index` should be a value present in the Client view section of the UI. For example, a Client `"John Doe"` may have `index 3` in the `list` view. However, after using the command `find John Doe`, this Client may have the `index 1` now. Use the index of the client in the displayed client list view (i.e `delete 3` in the normal list view but `delete 1` after using `find` command).
+  - `index` should be a value present in the *current* Client view section of the UI.
+  
+  - For example, a Client `"John Doe"` may have `index 3` in the `list` view. However, after using the command `find John Doe`, this Client may have `index 1` now.
+  
+  - Use the index of the client in the displayed client list view (e.g. `delete 3` in `list` view but `delete 1` after using `find` or `view` command).
 
 - Both MeetingCard section and PersonCard section will be affected
 
@@ -317,13 +322,15 @@ The feature is implemented through the class `ViewCommand`.
 
 The `index` field needs to be in an integer.
 
+<puml  src="diagrams/ViewSequenceDiagram.puml"  alt="ViewCommand Diagram" />
+
 #### Design considerations:
 
 - User can view a client at the specified index.
 - User can see a list-view of policies that this client is covered by.
 - MeetingCard section of UI should not be affected by this command.
 
-### View Meetings feature
+### View Meetings For This Week feature
 
 #### Implementation
 
@@ -331,14 +338,27 @@ The 'meetings' command allows users to view all the meetings that are scheduled 
 
 The UI component for this command is the `MeetingsWindow`, which is a pop-up window displaying the meetings for the current week.
 
-<puml  src="diagrams/ViewSequenceDiagram.puml"  width="300" />
+<puml  src="diagrams/DisplayMeetingsSequenceDiagram.puml"  alt="DisplayMeetings Diagram" />
+
 
 #### Design considerations:
 
 - User can view all meetings scheduled for the current week, _in chronological order_. This allows the user to **efficiently identify** the meetings that are coming up soon.
 - The meetings should be displayed _along with the client's name_, so that users can identify the client they are meeting and the time of the meeting.
 - Designed as a pop-up window to allow users to view the meetings _without cluttering the main window_. Users can also check details in the main window while viewing the meetings.
-- User must be \*able to close the window using a **keyboard\***, to maintain the keyboard-centric design and speed advantage of the CLI app.
+- User must be *able to close the window using a **keyboard***, to maintain the keyboard-centric design and speed advantage of the CLI app.
+
+### Planned enhancements
+These are some proposed features that can be implemented in the future.
+
+#### Adding a policy displays it in the Policies panel
+
+- Proposed implementation: Modify CommandResult to have an `isAddPolicy()` method. In the MainWindow class, modify `executeCommand` - if the command result isAddPolicy, display the newly added policy in the PolicyListPanel.
+- This feature would allow users to easily check the details of the newly added policy, without having to look through the user feedback box.
+
+#### Delete policies using the policy's index in Policies panel
+
+- This feature would allow users to easily delete policies, without having to type out the whole policy number.
 
 ---
 
@@ -375,15 +395,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                   | I can …​                                             | So that I can…​                                                          |
 | -------- | ------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------ |
-| `* * *`  | insurance agent           | add clients contact details into the address book    | keep track of my clients                                                 |
-| `* * *`  | insurance agent           | delete clients contact details in the address book   | remove previous clients                                                  |
-| `* * *`  | insurance agent           | edit details of the contact                          | update clients detail                                                    |
-| `* * *`  | insurance agent           | search for contact details                           | find client's information                                                |
+| `* * *`  | insurance agent           | add clients details into the address book            | keep track of my clients                                                 |
+| `* * *`  | insurance agent           | delete clients details in the address book           | remove previous clients                                                  |
+| `* * *`  | insurance agent           | edit details of the client                           | update clients detail                                                    |
+| `* * *`  | insurance agent           | search for details                                   | find client's information                                                |
 | `* * *`  | insurance agent           | add clients insurances and policies                  | keep track of my clients policies and insurances                         |
 | `* *`    | new insurance agent       | view all commands                                    | figure out how to use the application                                    |
+| `* * *`  | insurance agent           | add insurance and policies to clients                | add new policies to clients                                              |
 | `* * *`  | insurance agent           | delete clients insurances and policies               | remove client's previous policies                                        |
-| `*`      | insurance agent           | delete clients insurances and policies               | remove client's previous policies                                        |
-| `*`      | insurance agent           | untag clients in contact details                     | organise my list of client's contact                                     |
 | `* *`    | insurance agent           | search for clients with specified policies           | keep track of who has the specified policies which may have an update    |
 | `* *`    | insurance agent           | edit details of the client's policies and insurances | update myself on any changes made when my clients' update their policies |
 | `* * *`  | forgetful insurance agent | add meeting date/time                                | organise my day and meeting time with the client                         |
@@ -490,7 +509,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 \*a1. InsureBook shows an error message.
 
-**Use case: UC05 - Find a client**
+**Use case: UC05 - View a client**
+
+**MSS**
+
+1. User requests to <u>list all clients</u> (UC03).
+2. User requests to view a specific client in the list.
+3. InsureBook shows only the specified client's PersonCard in the Clients section of UI.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The list of client is empty.
+
+  Use case ends.
+
+- 2a. The given index is invalid.
+
+  - 2a1. InsureBook shows an error message.
+
+    Use case resumes at step 2.
+
+\*a. At any time, user inputs an invalid command/syntax.
+
+\*a1. InsureBook shows an error message.
+
+**Use case: UC06 - Find a client**
 
 **MSS**
 
@@ -511,28 +556,91 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 \*a1. InsureBook shows an error message.
 
-**Use case: UC06 - Filter client by tag**
+**Use case: UC07 - Add a policy**
 
 **MSS**
 
-1. User requests to find all clients with specific tag(s).
-2. InsureBook shows all clients with a matching tag.
+1. User requests to <u>list all clients</u> (UC03).
+2. User uses the addPolicy command to add a specific policy to a client with a specified index with parameters Policy name, Policy type, Policy number, Premium Term, Premium, Benefit
+3. InsureBook successfully adds the said policy to the person at the specified index
 
    Use case ends.
 
 **Extensions**
 
-- 1a. No tags are provided.
+- 1a. The list of client is empty.
 
-  - 1a1. InsureBook shows an error message.
+  Use case ends.
 
-    Use case resumes from step 1.
+-2a. The given index is invalid.
+
+- 2a1. InsureBook shows an error message.
+
+  Use case resumes from step 2.
 
 \*a. At any time, user inputs an invalid command/syntax.
 
 \*a1. InsureBook shows an error message.
 
-**Use case: UC07 - Delete a client**
+**Use case: UC08 - Delete a policy**
+
+**MSS**
+
+1. User requests to <u>list all clients</u> (UC03).
+2. User requests to delete a specific policy (identified by unique policy number) from a Client at a specified index
+3. InsureBook successfully removes the policy from the Client at the specified index.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The list of client is empty.
+
+  Use case ends.
+
+-2a. The given index is invalid.
+
+- 2a1. InsureBook shows an error message.
+
+  Use case resumes from step 2.
+
+-3a. The given policy number is invalid or does not exist
+
+- 3a1. InsureBook shows an error message.
+
+  Use case resumes from step 2.
+
+\*a. At any time, user inputs an invalid command/syntax.
+
+\*a1. InsureBook shows an error message.
+
+**Use case: UC09 - Find a policy**
+
+**MSS**
+
+1. User requests to <u>list all clients</u> (UC03).
+2. User requests to Find all users with a specific policy, using a chosen keyword.
+3. InsureBook successfully lists all users with the Policy containing the keyword in its name in the Clients section of UI
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The list of client is empty.
+
+  Use case ends.
+
+-2a. The given keyword is invalid.
+
+- 2a1. InsureBook shows an error message.
+
+  Use case resumes from step 2.
+
+\*a. At any time, user inputs an invalid command/syntax.
+
+\*a1. InsureBook shows an error message.
+
+**Use case: UC10 - Delete a client**
 
 **MSS**
 
@@ -544,7 +652,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 1a. The list is empty.
+- 1a. The list of client is empty.
 
   Use case ends.
 
@@ -558,7 +666,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 \*a1. InsureBook shows an error message.
 
-**Use case: UC08 - Clear all entries**
+**Use case: UC11 - View upcoming meetings for the present week**
+
+**MSS**
+
+1. User uses the meetings command to view upcoming meetings.
+2. InsureBook creates the popup showing all the upcoming meetings for the coming week, sorted in chronological order.
+
+**Extensions**
+
+- 1a. There is no upcoming meetings for the week.
+
+  Use case ends.
+
+**Use case: UC12 - Clear all entries**
 
 **MSS**
 
@@ -581,7 +702,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 \*a1. InsureBook shows an error message.
 
-**Use case UC09: Exit program**
+**Use case UC13: Exit program**
 
 **MSS**
 

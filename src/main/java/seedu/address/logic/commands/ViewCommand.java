@@ -53,7 +53,7 @@ public class ViewCommand extends Command {
         logger.info("Current list size: " + lastShownList.size() + ", target index : " + index.getOneBased());
 
         // Check if the index is valid
-        if (index.getZeroBased() >= lastShownList.size() || index.getZeroBased() < 0) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 

@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -24,23 +24,18 @@ public class ViewCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         // non-integer input
-        assertParseFailure(parser, "a", String.format(
-                MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ViewCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
 
         // negative index
-        assertParseFailure(parser, "-1", String.format(
-                MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ViewCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
 
         // zero index
-        assertParseFailure(parser, "0", String.format(
-                MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ViewCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
 
         // empty input
-        assertParseFailure(parser, "", String.format(
-                MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ViewCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
 
         // spaces only
-        assertParseFailure(parser, "    ", String.format(
-                MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ViewCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "    ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
     }
 }

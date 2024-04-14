@@ -373,7 +373,7 @@ The index must be an integer in the displayed client list.
 
 <div style="border: 1px solid #28a745; background-color: #d4edda; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x1F4A1;</span> <strong>Tip:</strong>
-POLICY_NAME can contain non-alphanumeric characters. <strong> Max: 40 characters</strong>
+POLICY_NAME can contain non-alphanumeric characters.
 </div>
 
 <br/>
@@ -392,13 +392,13 @@ of policies. (e.g. "123456", "123-abc-xyz")
 
 <div style="border: 1px solid #28a745; background-color: #d4edda; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x1F4A1;</span> <strong>Tip:</strong>
-POLICY_NUMBER can contain non-alphanumeric characters. <strong> Max: 16 characters</strong>
+POLICY_NUMBER can contain non-alphanumeric characters.
 </div>
 
 <br/>
 
 *  `PREMIUM_TERM` is the premium term of the policy. The premium term of the policy can only be one of the
-following options:
+following options (case insensitive):
 
 	**["Single", "Monthly", "Quarterly", "Semi-annually", "Annually"]**
 
@@ -409,7 +409,7 @@ large numbers or to indicate non-cash payment methods. (e.g. "100mil", "500 CPF 
 
 <div style="border: 1px solid #dc3545; background-color: #f8d7da; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x2757;</span> <strong>Caution:</strong>
-Policy_PREMIUM MUST be alphanumeric characters only!
+POLICY_PREMIUM MUST be alphanumeric characters only!
 </div>
 
 <br/>
@@ -419,7 +419,7 @@ large numbers. (e.g. "100mil", "100M")
 
 <div style="border: 1px solid #dc3545; background-color: #f8d7da; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x2757;</span> <strong>Caution:</strong>
-POLICY_PREMIUM MUST be alphanumeric characters only!
+BENEFIT MUST be alphanumeric characters only!
 </div>
 
 <br/>

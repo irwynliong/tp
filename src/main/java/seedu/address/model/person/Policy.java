@@ -12,10 +12,8 @@ import java.util.Set;
  */
 public class Policy {
 
-    public static final String POLICY_NAME_MESSAGE_CONSTRAINTS = "Policy name should not be blank and limited to "
-            + "40 characters only";
-    public static final String POLICY_NUMBER_MESSAGE_CONSTRAINTS = "Policy number should not be blank and limited to "
-            + "16 characters only";
+    public static final String POLICY_NAME_MESSAGE_CONSTRAINTS = "Policy name should not be blank";
+    public static final String POLICY_NUMBER_MESSAGE_CONSTRAINTS = "Policy number should not be blank";
     public static final String POLICY_TYPE_MESSAGE_CONSTRAINTS = "Policy type should only contain alphanumeric "
             + "characters and spaces, and it should not be blank";
     public static final String PREMIUM_TERM_MESSAGE_CONSTRAINTS = "Premium term has to be one of the following "
@@ -27,8 +25,8 @@ public class Policy {
             + "characters and spaces, and it should not be blank";
 
 
-    public static final String POLICY_NUMBER_VALIDATION_REGEX = "[^\\s].{0,15}";
-    public static final String POLICY_NAME_VALIDATION_REGEX = "[^\\s].{0,39}";
+    public static final String POLICY_NUMBER_VALIDATION_REGEX = "[^\\s].*";
+    public static final String POLICY_NAME_VALIDATION_REGEX = "[^\\s].*";
     public static final String ALPHANUMERIC_VALIDATION_REGEX = "^[a-zA-Z0-9 ]+$";
     public static final Set<String> ACCEPTED_PREMIUM_TERMS =
             new HashSet<>(Arrays.asList("SINGLE", "MONTHLY", "QUARTERLY", "SEMI-ANNUALLY", "ANNUALLY"));

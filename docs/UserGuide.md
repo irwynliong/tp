@@ -412,7 +412,7 @@ The index must be an integer in the displayed client list.
 
 <div style="border: 1px solid #28a745; background-color: #d4edda; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x1F4A1;</span> <strong>Tip:</strong>
-POLICY_NAME can contain non-alphanumeric characters. <strong> Max: 40 characters</strong>
+POLICY_NAME can contain non-alphanumeric characters.
 </div>
 
 <br/>
@@ -431,13 +431,13 @@ of policies. (e.g. "123456", "123-abc-xyz")
 
 <div style="border: 1px solid #28a745; background-color: #d4edda; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x1F4A1;</span> <strong>Tip:</strong>
-POLICY_NUMBER can contain non-alphanumeric characters. <strong> Max: 16 characters</strong>
+POLICY_NUMBER can contain non-alphanumeric characters.
 </div>
 
 <br/>
 
 *  `PREMIUM_TERM` is the premium term of the policy. The premium term of the policy can only be one of the
-following options:
+following options (case insensitive):
 
 	**["Single", "Monthly", "Quarterly", "Semi-annually", "Annually"]**
 
@@ -448,7 +448,7 @@ large numbers or to indicate non-cash payment methods. (e.g. "100mil", "500 CPF 
 
 <div style="border: 1px solid #dc3545; background-color: #f8d7da; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x2757;</span> <strong>Caution:</strong>
-Policy_PREMIUM MUST be alphanumeric characters only!
+POLICY_PREMIUM MUST be alphanumeric characters only!
 </div>
 
 <br/>
@@ -458,7 +458,7 @@ large numbers. (e.g. "100mil", "100M")
 
 <div style="border: 1px solid #dc3545; background-color: #f8d7da; padding: 10px; border-radius: 5px;">
 <span style="font-size: 20px; color: #007bff;">&#x2757;</span> <strong>Caution:</strong>
-POLICY_PREMIUM MUST be alphanumeric characters only!
+BENEFIT MUST be alphanumeric characters only!
 </div>
 
 <br/>
@@ -610,8 +610,11 @@ AddressBook data are saved in the hard disk automatically after any command that
 only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created
 by the application before running the application again.
 2. Phone number field is allowed to be a nonsensical number, e.g. "123". Please **ensure you type in your client's phone number carefully** to avoid recording down an incorrect number. Future versions will check the phone number field to make your workflow less error-prone.
-3. Phone number and email are all not unique, i.e. two clients can have the same phone number. Address is non-unique too, but this is intended as you may have clients living together. <br>
+3. Phone number field is allowed to have any amount of digits. However, if the number exceeds a certain amount, the application window will cut off the numbers that exceed the window size. Please ensure that your phone numbers added are logical within the size of the window.
+4. Phone number and email are all not unique, i.e. two clients can have the same phone number. Address is non-unique too, but this is intended as you may have clients living together. <br>
    Again, please **ensure you type in your client's details carefully** to prevent the situation of clients having duplicate phone numbers or email addresses.
+4. If the entered policy name exceeds a certain amount of characters, the application window would cut off the characters that are out of the frame in the policy tag. 
+To view the policy name in full, please use the view command to look at the policy details in full and the full policy name will be displayed.
 
 
 
